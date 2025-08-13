@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Recognition App</title>
+</head>
+<body>
+    <h2>Face Recognition Camera</h2>
+    <img src="{{ url_for('video') }}" width="720" /><br><br>
+
+    <form action="/add_face" method="POST">
+        <input type="text" name="name" placeholder="Enter name" required />
+        <button type="submit">Add Face</button>
+    </form>
+</body>
+</html>
