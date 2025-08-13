@@ -9,7 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # CAMERA_URL = "rtsp://Admin_PHT:kb~O,]c]N@%(JU)hxKeBK@10.81.14.119:554/stream1"
-CAMERA_URL = "http://192.168.1.3:8080/video"
+CAMERA_URL = "http://192.168.2.4:8080/video"
 # CAMERA_URL = 0
 cap = cv2.VideoCapture(CAMERA_URL)
 
