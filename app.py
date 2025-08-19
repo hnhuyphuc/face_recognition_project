@@ -9,8 +9,8 @@ from datetime import datetime
 app = Flask(__name__)
 
 # CAMERA_URL = "rtsp://Admin_PHT:kb~O,]c]N@%(JU)hxKeBK@10.81.14.119:554/stream1"
-CAMERA_URL = "http://192.168.2.4:8080/video"
-# CAMERA_URL = 0
+# CAMERA_URL = "http://192.168.2.4:8080/video"
+CAMERA_URL = 0
 cap = cv2.VideoCapture(CAMERA_URL)
 
 known_face_encodings = []
@@ -80,7 +80,8 @@ def gen_frames():
                     name = known_face_names[best_match_index]
 
             log_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            with open("logs/detections.log", "a") as log_file:
+            #with open("logs/detections.log", "a") as log_file:
+            with open("logs/detections.log", "a", encoding="utf-8") as log_file:
                 log_file.write(f"[{log_time}] Nhận diện: {name}\n")
 
             if name == "Unknown":
