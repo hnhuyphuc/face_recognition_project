@@ -32,6 +32,12 @@ def train_hog_svm():
         for image_file in os.listdir(person_dir):
             image_path = os.path.join(person_dir, image_file)
             image = cv2.imread(image_path)
+
+             # Kiểm tra xem ảnh có được đọc thành công không
+            if image is None:
+                print(f"  [Cảnh báo] Không thể đọc được file ảnh, bỏ qua: {image_path}")
+                continue # Bỏ qua file này và đi đến file tiếp theo
+
             gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             
             # Sử dụng face_recognition để tìm khuôn mặt trước
@@ -147,7 +153,7 @@ def evaluate_models(hog_svm_model, cnn_known_encodings, cnn_known_names):
     # --- Báo cáo cho HOG + SVM ---
     print("\n--- MÔ HÌNH HOG + SVM ---")
     print(f"Tổng thời gian dự đoán: {hog_svm_time:.4f} giây")
-    print(f"Tổng số lượng ảnh dự đoán: {total_test_images:.4f} ảnh")
+    print(f"Tổng số lượng ảnh dự đoán: {total_test_images: } ảnh")
 
     if total_test_images > 0:
         print(f"Thời gian trung bình/ảnh: {(hog_svm_time / total_test_images):.4f} giây")
@@ -160,7 +166,7 @@ def evaluate_models(hog_svm_model, cnn_known_encodings, cnn_known_names):
     # --- Báo cáo cho CNN ---
     print("\n--- MÔ HÌNH CNN (face_recognition) ---")
     print(f"Tổng thời gian dự đoán: {cnn_time:.4f} giây")
-    print(f"Tổng số lượng ảnh dự đoán: {total_test_images:.4f} ảnh")
+    print(f"Tổng số lượng ảnh dự đoán: {total_test_images } ảnh")
 
     if total_test_images > 0:
         print(f"Thời gian trung bình/ảnh: {(cnn_time / total_test_images):.4f} giây")
